@@ -1,0 +1,82 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.4.1/jspdf.min.js">
+</script>
+<style>
+
+    #tabla {
+        font-size: 14px;
+    }
+    #dirigido {
+        font-size : 20px;
+           letter-spacing: 1px;
+    }
+ 
+    #tabla2 td {
+        border: 1px solid black;
+        border-collapse: collapse;
+
+    }
+
+    #final {
+        font-size: 14px;
+    }
+
+</style>
+
+<body onload="pruebaDivAPdf()"></body>
+<div id="print">
+     <div id="imagen" align="center">
+            <img src="../../img/logo.png" style="width: 600px; height:80px">
+        </div>
+        <br>    
+    <div id="dirigido">
+        <center>
+
+            <B>ACTA DE ACEPTACIÓN </B>
+            <BR>
+            <B>PROGRAMA DE FORTALECIMIENTO DE LA CALIDAD EDUCATIVA</B>
+            <BR>
+            <BR>
+        </center>
+        <B>ESCUELA: {{form5s5.escuela}} </B>
+        <BR>
+        <B>CCT: {{form5s5.cct}}</B>
+        <BR>
+        <B>DOMICILIO: {{form5s5.domicilio}}</B> 
+        <BR>
+        <B>LOCALIDAD:{{form5s5.localidad}}</B>
+
+    </div>
+    <div id="contenido">
+
+        <p style="font-size:120%;" align="justify">
+            El personal directivo y docente de la Escuela antes señalada, por el presente documento manifiesta su aceptación a participar en las actividades que se organizan en el marco del programa de fortalecimiento de la calidad educativa de la Secretaría de Educación del Estado de Zacatecas durante el ciclo escolar 2017-2018, el cual promoverá la implementación del Plan y los Programas de Estudio para garantizar el máximo logro de aprendizajes mediante eventos de capacitación que fortalecerán las capacidades didacticas de los docentes y directivos, realizará la adquisición, elaboración o reproducción de materiales educativos focalizados por el programa, organizará en coordinación con las autoridades educativas, los docentes y directivos, actividades coordinadas por personal especializado en las que participan los alumnos y docentes de escuelas de los niveles de preescolar, primaria y secundaria atendidas por el programa con la finalidad de favorecer el desarrollo de habilidades de lenguaje, comunicación y pensamiento lógico matemático.
+      
+        <br>
+        Se firma la presente en fecha {{form5s5.fecha}} : en : {{form5s5.municipio}}
+    </div>
+    <center>
+        A T E N T A M E N T E
+    </center>
+    <center>
+        <b>Director de la escuela </b>
+    </center>
+    <center>
+        <B>Supervisor de la Zona </B></center>
+          </p>
+</div>
+<script>
+    function pruebaDivAPdf() {
+        var doc = new jsPDF('p', 'mm', 'a4', true);
+        html2canvas(($("#print")[0]), {
+            background: '#FFFFFF',
+            onrendered: function (canvas) {
+                var imgData = canvas.toDataURL('image/jpeg');
+
+                doc.addImage(imgData, 'JPEG', 10, 10, 180, 150);
+
+                $('#print').append(canvas);
+                doc.save('Spec_Sheet.pdf');
+            }
+        });
+    }
+</script>   

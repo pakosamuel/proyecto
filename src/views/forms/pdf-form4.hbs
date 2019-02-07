@@ -1,0 +1,106 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.4.1/jspdf.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.0.0-alpha.1/jspdf.plugin.autotable.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/2.3.5/jspdf.plugin.autotable.js"></script>
+
+<style>
+
+    #tabla {
+        font-size: 14px;
+    }
+    #dirigido {
+        font-size : 14px;
+    }
+    #contenido {
+        font-size: 14px; 
+    }
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        align-content: center;
+
+    }
+#uno {
+    font-size: 20px;
+    letter-spacing: 2px;
+}
+
+</style>
+
+<body onload="pruebaDivAPdf()"></body>
+<div id="print">
+  <div id="imagen" align="center">
+            <img src="../../img/logo.png" style="width: 600px; height:80px">
+        </div>
+
+    <div class="row">
+        <div class="col-sm-4">
+            <div id="uno">
+            <b>Seduzac</b><br>
+            
+            <b>Expediente: 2018-2019</b><br>
+            <b>Zacatecas, Zac:  {{form4s4.fecha}}</b><br>
+            <b>A quien corresponda: {{form4s4.dirigido}}</b><br>
+       </div>
+        </div>
+        <div class="col-sm-4"></div>
+         <div class="col-sm-4">
+            <div id="uno">
+            <b>Jefatura de Sector 01 de Preescolar</b><br>
+            <b>CCT: {{form4s4.cct}}</b><br>
+            <b>Asunto:Comision</b><br>
+        </div>
+         </div>
+    </div>
+    <br>
+      <div>
+        
+            <B>Antecedente: </B> Con la finalidad de llevar a cabo visita de asesoría y acompañamiento correspondientes a su función y de acuerdo a la agenda elabarada y entregada se comisiona para:
+       
+    </div>
+     <br>
+          <div>
+            <table align="center">
+                <tr align="center">
+                    <th>Día</th>
+                    <th>Actividad</th>
+                    <th>Lugar</th>
+                    <th>Localidad</th>
+                    <th>Observaciones</th>
+                </tr>
+                <tr>
+                    <td>{{form4s4.dia}}</td>
+                    <td>{{form4s4.actividad}}</td>
+                    <td>{{form4s4.lugar}}</td>
+                    <td>{{form4s4.localidad}}</td>
+                    <td>{{form4s4.observaciones}}</td>
+                </tr>
+            </table>
+            <center>
+                Me despido cordialmente y ratifico mis mejores consideraciones
+            </center>
+           
+        </div>
+    <center>
+        <div ID="final">
+            A T E N T A M E N T E
+            <BR>
+            <B>{{form4s4.firma}} </B>
+        </div>
+    </center>
+<script>
+    function pruebaDivAPdf() {
+        var doc = new jsPDF('p', 'mm', 'a4', true);
+        html2canvas(($("#print")[0]), {
+            background: '#FFFFFF',
+            onrendered: function (canvas) {
+                var imgData = canvas.toDataURL('image/jpeg');
+
+                doc.addImage(imgData, 'JPEG', 10, 10, 180, 150);
+
+                $('#print').append(canvas);
+                doc.save('Spec_Sheet.pdf');
+            }
+        });
+    }
+</script>   

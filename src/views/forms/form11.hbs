@@ -1,0 +1,91 @@
+
+<div class="col-md-4 mx-auto">
+    <div class="card">
+        <div class="card-header">
+            <h3>Llenar los campos </h3>
+        </div>
+        <div class="card-body">
+            <form action="/forms/form11" method="POST">
+               <div class="form-group">
+                                <label>Fecha</label>
+                                <br>
+                                <input type="date" name="fecha" id="fecha"placeholder="" class=" form-control">
+                                                            </div>
+
+                            <div class="form-group">
+                                <input type="text" name="nombre" id="nombre" onkeypress="return sololetras(event)" placeholder="Nombre" class="form-control">
+                            
+                            </div>
+
+                            <div class="form-group">
+                                
+                                <input type="text" name="cct" id="cct" placeholder="CCT" class="form-control">
+
+                            </div>
+
+                            <div class="form-group">
+                                   <label>Saldo Ciclo Anterior</label>
+                                <input type="number" name="saldoca" id="saldoca" min="1" class="form-control">
+                             
+                            </div>
+                            <div class="form-group">
+                                <label>Ingreso Ciclo Actual</label>
+                                <input type="number" name="ingresoca" id="ingresoca" class="form-control" min="1">
+                                
+                            </div>
+                            <div class="form-group">
+                                  <label>Saldo Actual</label>
+                                <input type="number" name="saldoac" id="saldoac" min ="1" class="form-control">
+                              
+                            </div>
+
+                            <div class="form-group">
+                                <label>Egreso</label>
+                                <input type="number" name="egreso" id="egreso" min="1" class="form-control">
+                                
+                            </div>
+                            <div class="form-group">
+                                 <label>Caja</label>
+                                <input type="number" name="caja" id="caja" min="1" class="form-control">
+                               
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="observaciones" id="observaciones" class="form-control" placeholder="Observaciones">
+                            
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="nombref" id="nombref" onkeypress="return sololetras(event)" class="form-control" placeholder="¿Quién firma?">
+                          
+                            </div>
+                                                        <br>
+
+                <div class="form-group">
+                   <button class="btn btn-success btn-block"  type="submit">Guardar
+                   </button>        
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+   function sololetras(e) {
+                key = e.keyCode || e.wich;
+                teclado = String.fromCharCode(key);
+                letras = " abcdefghijklmnopqrstuvwxyzñABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
+                especiales = "8-37-38-46-164"; //letra eñe}
+                teclado_especial = false;
+                for (var i in especiales) {
+                    if (key == especiales[i]) {
+                        teclado_especial = true;
+                        break;
+                    }
+                }
+                if(letras.indexOf(teclado)==-1 && !teclado_especial) {
+                    return false;
+                    
+                }
+            }
+
+</script>

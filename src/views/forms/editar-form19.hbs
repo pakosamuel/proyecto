@@ -1,0 +1,94 @@
+
+
+<div class="col-md-10 mx-auto">
+    <div class="card">
+        <div class="card-header">
+            <h3>Llenar los campos </h3>
+        </div>
+        <div class="card-body">
+            <form action="/forms/editar-form19/{{form19s._id}}/?_method=PUT" method="POST">
+                    <input type="hidden" name="_method" value="PUT">
+               <div class="form-group">
+                                <input type="text" name="nombre" id="nombre" placeholder="Escuela" class="form-control"
+                                value="{{form19s.nombre}}">
+                         
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="cct" id="cct" placeholder="CCT" class="form-control"
+                                value="{{form19s.cct}}">
+                                
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="zona" id="zona" onkeypress="return sololetras(event)" placeholder="Nombre Zona" class="form-control" value="{{form19s.zona}}">
+                       
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="asunto" id="asunto" placeholder="Asunto" class="form-control" value="{{form19s.asunto}}">
+                             
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="representa" id="representa" onkeypress="return sololetras(event)" placeholder="¿Quién Representa" class="form-control" value="{{form19s.representa}}">
+                                
+                            </div>
+                            <div class="form-group">
+                                <label>Saldo</label>
+                                <input type="number" name="saldo" id="saldo" min="1" class="form-control" value="{{form19s.saldo}}">
+                           
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="saldon" id="saldon" placeholder="Saldo con letra" class="form-control" value="{{form19s.saldon}}">
+                                
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="modificacion" id="modificacion" onkeypress="return sololetras(event)"  placeholder="¿Quién se modifica?" class="form-control" value="{{form19s.modificacion}}">
+                                                            </div>
+                            <div class="form-group">
+                                <input type="text" name="firma1" id="firma1" onkeypress="return sololetras(event)" class="form-control" placeholder="Nombre de Firma1" value="{{form19s.firma1}}">
+                            
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="firma2" id="firma2" onkeypress="return sololetras(event)" class="form-control" placeholder="Nombre de Firma2"
+                                value="{{form19s.firma2}}">
+                            
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="firma3" id="firma3" onkeypress="return sololetras(event)" class="form-control" placeholder="Nombre de Firma2" value="{{form19s.firma3}}">
+                            
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="firma4" id="firma4"  onkeypress="return sololetras(event)" class="form-control" placeholder="Nombre de Firma4"
+                                value="{{form19s.firma4}}">
+                            
+                            </div>
+                                                        <br>
+
+                <div class="form-group">
+                   <button class="btn btn-success btn-block"  type="submit">Guardar
+                   </button>        
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+   function sololetras(e) {
+                key = e.keyCode || e.wich;
+                teclado = String.fromCharCode(key);
+                letras = " abcdefghijklmnopqrstuvwxyzñABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
+                especiales = "8-37-38-46-164"; //letra eñe}
+                teclado_especial = false;
+                for (var i in especiales) {
+                    if (key == especiales[i]) {
+                        teclado_especial = true;
+                        break;
+                    }
+                }
+                if(letras.indexOf(teclado)==-1 && !teclado_especial) {
+                    return false;
+                    
+                }
+            }
+
+</script>

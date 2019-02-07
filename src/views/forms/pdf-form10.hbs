@@ -1,0 +1,103 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.4.1/jspdf.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.0.0-alpha.1/jspdf.plugin.autotable.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/2.3.5/jspdf.plugin.autotable.js"></script>
+
+<style>
+
+    #tabla {
+        font-size: 14px;
+    }
+    #dirigido {
+        font-size: 25px;
+        letter-spacing: 1px;
+    }
+    #contenido {
+        font-size: 25px;
+        letter-spacing: 1px;
+    }
+    #tabla2 td, th {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+    #final {
+        font-size: 25px;
+        letter-spacing: 1px;
+    }
+    #uno {
+        font-size: 25px;
+        letter-spacing: 1px;
+    }
+
+</style>
+
+<body onload="pruebaDivAPdf()"></body>
+<div id="print">
+        <div id="uno">     
+        <div id="imagen" align="center">
+            <img src="../../img/logo.png" style="width: 500px; height:100px">
+        </div>  <br>      
+        <div id="uno">
+            Planeación semanal de actividades: <b>{{form10s10.zona}}</b><br>
+            Zona escolar : <b>  Preescolar Federal</b><br>
+            Semana:  <b> {{form10s10.semana}}  </b> <br>
+        </div>
+        <div id="contenido">
+            <div id="tabla2">
+               {{#each form10}}
+                <center>
+                    <table>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Actividad</th>
+                            <th>Lugar</th>
+                        </tr>
+                        <tr>
+                            <td>{{form10s10.fecha}}</td>
+                            <td>{{form10s10.actividad}}</td>
+                            <td>{{form10s10.lugar}}</td>
+                        </tr>
+                    </table>  
+                </center>       
+                <center>
+                    Me despido cordialmente y ratifico mis mejores consideraciones
+                </center>
+            </div>
+            <center>
+                Atentamente 
+            </center>  
+        </div>  
+     </div> 
+     <br>
+      <div class="row">
+             
+                <div class="col-sm-4" id="uno" align="center">
+                    <b> {{form10s10.firmauno}}</b><br>
+                    Jefe de Departamento 
+                </div>
+                <div class="col-sm-4"></div>                               
+                <div class="col-sm-4" id="uno" align="center">
+                    <b> {{form10s10.firmados}}</b><br>   
+                    Jefe de Departamento
+                </div>
+             
+        </div>
+</div>
+
+
+<script>
+    function pruebaDivAPdf() {
+        var doc = new jsPDF('p', 'mm', 'a4', true);
+        html2canvas(($("#print")[0]), {
+            background: '#FFFFFF',
+            onrendered: function (canvas) {
+                var imgData = canvas.toDataURL('image/jpeg');
+
+                doc.addImage(imgData, 'JPEG', 10, 10, 180, 150);
+
+                $('#print').append(canvas);
+                doc.save('Spec_Sheet.pdf');
+            }
+        });
+    }
+</script>   

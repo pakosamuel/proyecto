@@ -1,0 +1,41 @@
+<div class="row">
+    {{#each form10}}
+    <div class="col-md-5 mb-5">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title d-flex justify-content-between align-items-center">
+
+                    {{zona}}
+                    zona, semana, fecha, actividad, lugar, firmauno, firmados
+                    <a href="/forms/pdf1">
+                        <i class="fas fa-file-pdf"></i> </a>
+                    <a href="/forms/editar-form8/{{_id}}">
+                        <i class="fas fa-edit m-2"></i></a>
+                    <a href="/forms/delete10/{{_id}}">
+                        <i class="fas fa-trash"></i>
+                    </a>
+
+                </h4>
+                </h4>
+                <p>{{semana}}</p>
+                <p>{{fecha}}</p>
+                <p>{{actividad}}</p>
+                <p>{{lugar}}</p>
+                <p>{{firmauno}}</p>
+                <p>{{firmados}}</p>
+
+
+            </div>
+        </div>
+    </div>
+    {{else}}
+  <div class="card mx-auto">
+        <div class="card-body">
+            <h1>Hola {{ usuario.nombre}}</h1>
+            <p class="lead">No hay archivos en la base de datos.</p>
+            <a href="/formulario" class="btn btn-success btn-block">
+                Crear nuevo archivo </a>
+        </div>
+    </div>
+    {{/each}}
+</div>

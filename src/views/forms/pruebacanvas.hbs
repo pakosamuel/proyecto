@@ -1,0 +1,74 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.4.1/jspdf.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.0.0-alpha.1/jspdf.plugin.autotable.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/2.3.5/jspdf.plugin.autotable.js"></script>
+    <script src="/js/html2canvas.js"></script>
+        <script src="/js/html2canvas.min.js"></script>
+<body onload="pruebaDivAPdf()"></body>
+<div id="print">
+   <div id="imagen">
+        <img src="../../img/logo.png" style="width: 200px;">
+    </div>
+      <div>
+            <b>Secretaría de Educación del Estado de Zacatecas</b><br>
+            <b>Escuela: {{form19s19.nombre}}</b><br>
+            C.C.T:{{form19s19.cct}}<br>
+            Localidad: {{form19s19.zona}}<br>
+            Asunto:{{form19s19.asunto}}<br>
+        </div>
+        <div id="dirigido">
+            <B>Nombre: {{form19s19.representa}} </B>
+            <BR>
+            <B>Director Regional de Servicios Educativos 01 Federal</B>
+            <BR>
+            <B>PRESENTE</B> 
+        </div>
+       <p style="align:justify">
+            <br>
+            Por medio de la presente me dirijo a usted para informarle que al término del Ciclo escolar 2017-2018 en la escuela: de la comunidad: donde presté mis servicios como Directora se informa que el dinero con el que cierra este presente Ciclo Escolar es de: {{form19s19.saldo}} con letra: {{form19s19.saldon}} .
+            <br>
+            Y de la misma manera hago su conocimiento que ha quedado responsable la persona: {{form19s19.modificacion}} presidenta de la APF del ciclo escolar 2017-2018
+            <br>
+            Sin otro asunto por el momento me despido de usted respetuosamente enviandole un cordial saludo.
+            <br>
+            <div id="tabla2">
+                <br>
+                <br>
+                <center>
+                    Sin más por el momento me despido, no sin antes desearle éxito en sus actividades cotidianas.
+                </center>
+                <br>
+                <br>
+            </div>
+ </p>
+
+        <div>
+                Atentamente <br>
+                {{form19s19.firma1}} <br>
+                 {{form19s19.firma2}}<br>
+                  {{form19s19.firma3}}<br>
+                   {{form19s19.firma4}}
+        </div>
+
+</div>
+
+
+<script>
+    function pruebaDivAPdf() {
+var doc = new jsPDF('p', 'pt','a4',true);
+doc.setFontSize(16);
+doc.setTextColor(80, 77, 78);
+doc.text(15, 2, 'should be an image under here'); 
+html2canvas($("#print"), {
+    useCORS : true,
+    onrendered: function(canvas) {
+       var imgData = canvas.toDataURL('image/jpeg');
+
+       doc.addImage(imgData, 'JPEG', 15, 0, 34, 37);
+       console.log(imgData);
+       $('#print').append(canvas);
+       doc.save('Spec_Sheet.pdf');
+    }
+});
+    }
+</script>   

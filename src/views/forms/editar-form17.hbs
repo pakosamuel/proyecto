@@ -1,0 +1,104 @@
+
+<div class="col-md-10 mx-auto">
+    <div class="card">
+        <div class="card-header">
+            <h3>Llenar los campos </h3>
+        </div>
+        <div class="card-body">
+            <form action="/forms/editar-form17/{{form17s._id}}?_method=PUT" method="POST">
+                <input type="hidden" name="_method" value="PUT">
+              <div class="form-group">
+                                <input type="text" name="oficio" id="oficio" placeholder="Oficio" class="form-control"
+                                value="{{form17s.oficio}}">
+                            
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="oficina" id="oficina" placeholder="Oficina" class="form-control"
+                                 value="{{form17s.oficina}}">
+                             
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="asunto" id="asunto" placeholder="Asunto" class="form-control"
+                                 value="{{form17s.asunto}}">
+                            
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="referencia" id="referencia" placeholder="Referencia" class="form-control"  value="{{form17s.referencia}}">
+                                
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="lugar" id="lugar" placeholder="Lugar" class="form-control"  value="{{form17s.lugar}}">
+                              
+                            </div>
+                           <div class="form-group">
+                                <label>Fecha</label>
+                                <br>
+                                <input type="date" name="fecha" id="fecha"placeholder="" class=" form-control"
+                                 value="{{form17s.fecha}}">
+                                                            </div>
+
+                            <div class="form-group">
+                                <input type="text" name="presentador" id="presentador" onkeypress="return sololetras(event)" class="form-control" placeholder="¿Quién Presenta?"
+                                 value="{{form17s.presentador}}">
+                             
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="ct" id="ct" class="form-control" placeholder="CCT"
+                                 value="{{form17s.ct}}">
+                           
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="nombre_es" id="nombre_es" class="form-control" placeholder="Escuela"
+                                 value="{{form17s.nombre_es}}">
+                              
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="municipio" id="municipio" onkeypress="return sololetras(event)" class="form-control" placeholder="Municipio" value="{{form17s.municipio}}">
+                                
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="localidad" id="localidad" onkeypress="return sololetras(event)" class="form-control" placeholder="Localidad"  value="{{form17s.localidad}}">
+                    
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="tipo" id="tipo" onkeypress="return sololetras(event)" class="form-control" placeholder="Movimiento"
+                                 value="{{form17s.Movimiento}}">
+                     
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="nombre_firma" id="nombre_firma" onkeypress="return sololetras(event)" class="form-control" placeholder="¿Quién firma?"
+                                 value="{{form17s.nombre_firma}}">
+                                
+                            </div>
+                                                        <br>
+
+                <div class="form-group">
+                   <button class="btn btn-success btn-block"  type="submit">Guardar
+                   </button>        
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+   function sololetras(e) {
+                key = e.keyCode || e.wich;
+                teclado = String.fromCharCode(key);
+                letras = " abcdefghijklmnopqrstuvwxyzñABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
+                especiales = "8-37-38-46-164"; //letra eñe}
+                teclado_especial = false;
+                for (var i in especiales) {
+                    if (key == especiales[i]) {
+                        teclado_especial = true;
+                        break;
+                    }
+                }
+                if(letras.indexOf(teclado)==-1 && !teclado_especial) {
+                    return false;
+                    
+                }
+            }
+
+</script>

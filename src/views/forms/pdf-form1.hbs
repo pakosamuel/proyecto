@@ -1,0 +1,106 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.4.1/jspdf.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/2.3.5/jspdf.plugin.autotable.js"></script>
+<style>
+table, th, td {
+  border: 1px solid black;
+  font-size: 25px;
+}
+#uno {
+    font-size: 25px;
+    letter-spacing: 2px;
+}
+</style>
+<body onload="pruebaDivAPdf()"></body>
+<div id="print">
+    <div class="container" id="template_invoice">
+        <div id="imagen" align="center">
+            <img src="../../img/logo.png" style="width: 400px; height:200px">
+        </div> 
+        <br>
+        <div class="row">
+            <div class="col-sm-4">
+               
+                 <div id="uno">
+                        JEFATURA DE SECTOR, SUPERVISIONES, CAI, CEDEZ <br>
+                        UNIDAD REGIONAL DE ASESORÍA ACADEMICA <br>
+                        PRESENTE <br>
+                </div>   
+                
+            </div>
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+               <div id="uno">
+                    <p style="font-size:100%;" align="left">Oficio: <b> {{form1s1.oficio}}</b><br>
+                        Oficina:<b>{{form1s1.oficina}}</b><br>
+                        Asunto:<b>{{form1s1.asunto}}</b><br>
+                        Referencia:<b>{{form1s1.Referencias}}</b><br>
+                        Lugar:<b>{{form1s1.Lugar}}</b><br>
+                        Fecha:<b>{{form1s1.fecha}}</b><br>
+                    </p>
+                </div>
+            </div> 
+          
+        </div>
+        <br>
+        <div id="uno">
+        <p align="justify">
+            De acuerdo con la Ley de Entrega-Recepción del Estado de Zacatecas, señala como premisa que dentro del proceso de Entrega-Recepción, los servidores públicos salientes deben rendir cuentas puntuales de la administración a su cargo, al servidor público entrante. Están obligados quienes tengan a su cargo Direcciones Escolares, Subdirecciones, Supervisiones, Jefaturas de Sector y Contralorías: en los diferentes niveles de educación preescolar, primaria y secundaria que tengan a su cargo recursos materiales, financieros y humanos, así como la información y documentación sobre el estado que guardan los asuntos de su competencia que le hayan sido otorgadas por el desempeño de sus funciones.
+        </p>
+        <p align="justify">
+            El superior inmediato de servidor público que entrega, deberá hacer la solicitud debidamente dirigida a quien suscribe {{form1s1.dirigido}}, para que este a su vez lo solicite al {{form1s1.firmador}}, Coordinador de Direcciones regionales. Y de esta manera el organo de interno de control pueda programar una fecha para la capacitacion de Entrega-Recepción. El servidor público saliente tendrá la asesoría y acompañamiento durante el proceso del comisionado como Enlace Regional de Entrega-Recepción que se encuentra en la Dirección Regional de servicios educativos 01 federal, para así estar en condiciones de dar inicio al protocolo de Entrega-Recepción
+        </p>
+    </div>
+        <h4>Requisitos</h4> 
+        <div align="center">
+            <table id>
+                <tr>
+                    <th>1.-Nombre</th>
+                    <th>2.-RFC</th>
+                    <th>3.-Email</th>
+                </tr>
+                <tr>
+                    <th>4.-Copia Credencial Elector</th>
+                    <th>5.-CURP</th>
+                    <th>6.-Número Telefonico</th>
+                </tr>
+                <tr>
+                    <th colspan="3">7.- Nombramiento, oficio de comisión u oficio de presentación al centro de trabajo que se entrega para el saliente.</th>
+                </tr>
+                <tr>
+                    <th colspan="3">8.-Nombramiento, oficio de comisión u oficio de presentación al centro de trabajo que se recibe para el entrante.</th>
+                </tr>
+
+            </table>
+        </div>
+        <div id="uno">
+          <br>
+            <center>Sin más por el momento me despido, no sin antes desearle el éxito en sus actividades cotidianas.</center>
+            <br>
+            <center>ATENTAMENTE</center>
+            <br>
+            <center>PROFR. VICTOR MANUEL CABRERA VERA
+                <BR>
+                DIRECTOR REGIONAL DEL SERVICIO EDUCATIVO 01 FEDERAL
+            </center>
+        
+        </div>
+    </div>
+
+</div> <!-- print -->
+<script>
+    function pruebaDivAPdf() {
+        var doc = new jsPDF('p', 'mm', 'a4', true);
+        html2canvas(($("#print")[0]), {
+            background: '#FFFFFF',
+            onrendered: function (canvas) {
+                var imgData = canvas.toDataURL('image/jpeg');
+
+                doc.addImage(imgData, 'JPEG', 10, 10, 180, 220);
+
+                $('#print').append(canvas);
+                doc.save('Spec_Sheet.pdf');
+            }
+        });
+    }
+</script>   

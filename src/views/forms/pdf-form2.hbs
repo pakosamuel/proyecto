@@ -1,0 +1,69 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.4.1/jspdf.min.js">
+</script>
+<style>
+    table, th, td {
+        border: 1px solid black;
+        font-size: 25px;
+    }
+    #uno {
+        font-size: 25px;
+        letter-spacing: 2px;
+    }
+</style>
+
+
+<body onload="pruebaDivAPdf()"></body>
+<div id="print">          
+   <div id="imagen" align="center">
+            <img src="../../img/logo.png" style="width: 500px; height:100px">
+        </div> 
+    <br>
+    <div class="container"  id="contenido">
+                 
+              <div id="uno">
+                <center>
+              FORMATO PARA SOLICITUD DE SALAS
+          </center>
+            <div class="row">
+                <div class="col-md-6">
+                    <label><b> Nombre del Supervisor: {{form2s2.nombre}}</b></label>
+                </div>
+                <div class="col-md-6">
+                    <label><b>Zona Escolar No:{{form2s2.zona}}</b></label>
+                </div>
+            </div>
+        </div>
+        <label><b> Sala No.:{{form2s2.nosala}}</b></label><br>
+        <label><b>Asunto:{{form2s2.asunto}}</b></label> <br>           
+        <label><b> Fecha:{{form2s2.fecha}}</b></label>      <br>     
+        <label><b> Hora:{{form2s2.hora}}</b></label><br>
+        <label><b> Cantidad de Personas:{{form2s2.cantidad}}</b></label><br>
+        _____________________
+        <BR>
+        <div id="uno">
+            Firma del Supervisor(A): Maestro Eliazar 
+            <br>
+            NOTA IMPORTANTE:
+            <BR>NO DEJAR LAS SALAS SUCIAS(RECOGER SU BASURA)
+            <BR> RESPETAR LOS HORARIOS
+            <BR>CUIDAR EL MOBILIARIO
+            <br>
+        </div>
+    </div>
+</div>
+<script>
+    function pruebaDivAPdf() {
+        var doc = new jsPDF('p', 'mm', 'a4', true);
+        html2canvas(($("#print")[0]), {
+            background: '#FFFFFF',
+            onrendered: function (canvas) {
+                var imgData = canvas.toDataURL('image/jpeg');
+
+                doc.addImage(imgData, 'JPEG', 10, 10, 180, 220);
+
+                $('#print').append(canvas);
+                doc.save('Spec_Sheet.pdf');
+            }
+        });
+    }
+</script>   

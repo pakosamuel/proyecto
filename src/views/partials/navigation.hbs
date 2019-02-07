@@ -1,0 +1,33 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+    <div class="container">
+        <a class="navbar-brand" href="/formulario">SEDUZAC</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button> <!--
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="/singin">Inicio <span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" href="/about">About</a>
+          </div> -->
+        <div class="navbar-nav ml-auto">
+            {{#if usuario}}
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+
+                    <a class="nav-item nav-link"> Usuario: {{usuario.nombre}} Zona: {{usuario.zona}}</a>
+                </li>            
+            </ul>
+
+            <a class="nav-link " href="/users/logout" >
+                Salir
+            </a>
+            {{else }}
+            <a class="nav-item nav-link" href="/users/singin">Iniciar</a>
+            <a class="nav-item nav-link" href="/users/singup">Registrar</a>
+            {{/if}}
+
+
+        </div>
+    </div>
+
+</nav>

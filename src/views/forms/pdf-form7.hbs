@@ -1,0 +1,115 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.4.1/jspdf.min.js">
+</script>
+
+<body onload="pruebaDivAPdf()"></body>
+<div id="print">
+    <div>
+        
+            <div id="imagen">
+                <img src="../../img/logo.png" style="width: 200px;">
+            </div> 
+     
+    </div>
+        <br>
+        <div class="container"  id="contenido">
+            <div class="padding-m" align="center">
+            FORMATO PARA SOLICITUD DE SALAS
+            </div>
+        </div>
+
+        <div id="usuarios">
+            <div class="row">
+                <div class="col-md-6">
+                    <label><b> Nombre del Supervisor: {{form2s2.nombre}}</b></label>
+                </div>
+                <div class="col-md-6">
+                    <label><b>Zona Escolar No:{{form2s2.zona}}</b></label>
+                </div>
+            </div>
+                
+            <BR>
+            <BR>
+            <label><b> Sala No.:{{form2s2.nosala}}</b></label>
+            <BR>
+            <label><b>Asunto:{{form2s2.asunto}}</b></label>
+            <BR>
+            <label><b> Fecha:{{form2s2.fecha}}</b></label>
+            <BR>
+            <BR>
+            <label><b> Hora:{{form2s2.hora}}</b></label>
+            <BR>
+            <BR>
+            <label><b> Cantidad de Personas:{{form2s2.cantidad}}</b></label>
+            <BR>
+            _____________________
+            <BR>
+            Firma del Supervisor(A): Maestro Eliazar 
+            <br>
+            NOTA IMPORTANTE:
+            <BR>NO DEJAR LAS SALAS SUCIAS(RECOGER SU BASURA)
+            <BR> RESPETAR LOS HORARIOS
+            <BR>CUIDAR EL MOBILIARIO
+            <br>
+        </div>
+</div>
+         
+        
+
+
+</script>
+
+   
+    </div>
+    <div class="container">
+        <a href="javascript:pruebaDivAPdf()" class="btn btn-success">Pasar a PDF</a>
+        <br><br><br>
+    </div>
+
+<script>
+    function pruebaDivAPdf() {
+        var pdf = new jsPDF('p', 'pt', 'letter');
+        source = $('#print')[0];
+
+        specialElementHandlers = {
+            '#bypassme': function (element, renderer) {
+                return true
+            }
+        };
+        margins = {
+            top: 80,
+            bottom: 60,
+            left: 40,
+            width: 522
+        };
+
+        pdf.fromHTML(
+            source, 
+            margins.left, // x coord
+            margins.top, { // y coord
+                'width': margins.width, 
+                'elementHandlers': specialElementHandlers
+            },
+
+            function (dispose) {
+                pdf.save('Prueba.pdf');
+            }, margins
+        );
+    }
+</script>
+
+
+
+
+<script>
+/*
+var doc = new jsPDF();
+
+doc.setFontSize(22);
+doc.text(20, 20, 'This is a title');
+
+doc.setFontSize(16);
+doc.text(20, 30, 'This is some normal sized text underneath.');
+
+doc.save('Test.pdf');
+*/
+</script>

@@ -1,0 +1,127 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.4.1/jspdf.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.0.0-alpha.1/jspdf.plugin.autotable.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/2.3.5/jspdf.plugin.autotable.js"></script>
+<script src="/js/html2canvas.js"></script>
+<script src="/js/html2canvas.svg.js"></script>
+<style>
+    #tabla {
+        font-size: 14px;
+    }
+    #dirigido {
+        font-size : 20px;
+    }
+    #contenido {
+        font-size: 20px; 
+        text-align: justify;
+    }
+    #tabla2 td {
+        border: 1px solid black;
+        border-collapse: collapse;
+         font-size: 20px; 
+    }
+    #final {
+        font-size: 20px;
+    }
+</style>
+<body onload="pruebaDivAPdf()"></body>
+<div id="print">
+    <div class="container">
+        <div id="imagen" align="center">
+            <img src="../../img/logo.png" style="width: 500px; height:100px">
+        </div>
+        <br>
+        <div class="row">
+
+            <div class="col">
+                <br>
+                <br>
+                <B>Nombre:{{form19s19.representa}} </B>
+                <BR>
+                <B>Director Regional de Servicios Educativos 01 Federal</B>
+                <BR>
+                <B>PRESENTE</B> 
+            </div>
+            <div class="col">
+                <table>
+                    <tr>
+                        <td><b>Secretaría de Educación del Estado de Zacatecas</b></td>
+                    </tr>
+                    <tr>
+                        <td><b>Escuela:{{form19s19.nombre}}</b></td>
+                    </tr>
+                    <tr>
+                        <td>C.C.T: {{form19s19.cct}}</td>
+                    </tr>
+                    <tr>
+                        <td>Localidad:{{form19s19.zona}}</td>
+                    </tr>
+                                       <tr>
+                        <td>Asunto:{{form19s19.asunto}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div id="contenido">
+            <br>
+            Por medio de la presente me dirijo a usted para informarle que al término del Ciclo escolar 2017-2018 en la escuela: de la comunidad: donde presté mis servicios como Directora se informa que el dinero con el que cierra este presente Ciclo Escolar es de: ${{form19s19.saldo}} con letra:{{form19s19.saldon}} .
+            <br>
+            Y de la misma manera hago su conocimiento que ha quedado responsable la persona:{{form19s19.modifica}} presidenta de la APF del ciclo escolar 2017-2018
+            <br>
+            Sin otro asunto por el momento me despido de usted respetuosamente enviandole un cordial saludo.
+            <br>
+            <div id="tabla2">
+                <br>
+                <br>
+                <center>
+                    Sin más por el momento me despido, no sin antes desearle éxito en sus actividades cotidianas.
+                </center>
+                <br>
+                <br>
+            </div>
+        </div> <!-- contenido -->
+        <center>
+                A T E N T A M E N T E
+                  </center>
+                  <br>
+    </div> <!-- container -->
+            <div class="row">           
+                <div class="col-sm-4">
+                    ____________________<br>
+                              <center>  <B>1{{form19s19.firma1}} </B></center>
+                <BR>
+                <br>
+               ____________________<br>
+            <center>    <B>2{{form19s19.firma2}}</B></center>
+                
+            </div>  
+            <div class="col-sm-4">
+            </div>
+            <div class="col-sm-4">
+               ____________________<br>
+              <center>  <B>3{{form19s19.firma3}} </B></center>
+                <BR>
+                <br>
+              ____________________<br>
+             <center>   <B>4{{form19s19.firma4}} </B></center>
+          
+            </div>
+        </div><!--ROW-->
+       
+</div> <!-- print -->
+ <script>
+    function pruebaDivAPdf() {
+        var doc = new jsPDF('p', 'mm', 'a4', true);
+        html2canvas(($("#print")[0]), {
+            background: '#FFFFFF',
+            onrendered: function (canvas) {
+                var imgData = canvas.toDataURL('image/jpeg');
+
+                doc.addImage(imgData, 'JPEG', 10, 10, 180, 150);
+
+                $('#print').append(canvas);
+                doc.save('Spec_Sheet.pdf');
+            }
+        });
+    }
+</script>   

@@ -1,0 +1,119 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.4.1/jspdf.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.0.0-alpha.1/jspdf.plugin.autotable.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/2.3.5/jspdf.plugin.autotable.js"></script>
+<style>
+    #imagen {
+        max-width: 100%;
+        height: auto;
+
+    }
+
+    #tabla {
+        font-size: 14px;
+    }
+    #dirigido {
+        font-size : 14px;
+    }
+    #contenido {
+        font-size: 18px; 
+    }
+    table th, tr, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        font-size: 20px;
+    letter-spacing: 1px;
+
+    }
+    #final {
+        font-size: 18px;
+    }
+
+</style>
+<body onload="pruebaDivAPdf()"></body>
+<div id="print">
+   <div id="imagen" align="center">
+            <img src="../../img/logo.png" style="width: 500px; height:100px">
+        </div>
+    <br>
+    <div class="row">
+         <div class="col-sm-4">
+        <B>Maestro: {{form17s17.presentador}} </B>
+        <BR>
+        <B>Jefe del Departamento Regional</B>
+        <BR>
+        <B>De Servicios Educativos 01 Federal</B> 
+        <br>
+        <B>P r e s e n t e </B>
+    </div>
+    <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+        Oficio: <b>{{form17s17.oficio}}</b><br>
+        Oficina:<b>{{form17s17.oficina}}</b><br>
+        Asunto:<b>{{form17s17.asunto}}</b><br>
+        Referencia:<b>{{form17s17.referencia}}</b><br>
+        Lugar:<b>{{form17s17.lugar}}</b><br>
+        Fecha: <b>{{form17s17.fecha}}</b><br>
+    </div>
+    </div>
+    <br>
+  
+    <div id="contenido">
+        <p style="font-size:100%" align="justify">
+            Por medio del presente, NOTIFICO a Usted que han sido registrados oficialmente
+            en el Cátalogo Básico de Centros de Trabajo de la Entidad, mediante los movimientos solicitados a tráves del formato CCT-NM, con los siguientes datos:
+        </p>
+        <center>
+        <table>
+            <tr>
+                <th>CT</th>
+                <th>Nombre CT</th>
+                <th>Municipio</th>
+                <th>Localidad</th>
+                <th>Tipo</th>
+            </tr>
+            <tr>
+                <td>{{form17s17.ct}}</td>
+                <td>{{form17s17.nombre_es}}</td>
+                 <td>{{form17s17.municipio}}</td>
+                  <td>{{form17s17.localidad}}</td>
+                   <td>{{form17s17.tipo}}</td>
+
+            </tr>
+        </table>
+    </center>   
+        <div id="tabla2">
+            <center>
+                Me despido cordialmente y ratifico mis mejores consideraciones
+            </center>
+            <br>
+            <br>
+        </div>
+    </div>
+    <div ID="final">
+        <center>
+        A T E N T A M E N T E
+        <BR>
+        <BR>
+        <B>Maestro Eliazar </B>
+        <BR>
+        <B>Jefe del Departamento de Estadística  </B>
+    </center>
+    </div>
+</div>
+<script>
+    function pruebaDivAPdf() {
+        var doc = new jsPDF('p', 'mm', 'a4', true);
+        html2canvas(($("#print")[0]), {
+            background: '#FFFFFF',
+            onrendered: function (canvas) {
+                var imgData = canvas.toDataURL('image/jpeg');
+
+                doc.addImage(imgData, 'JPEG', 10, 10, 180, 150);
+
+                $('#print').append(canvas);
+                doc.save('Spec_Sheet.pdf');
+            }
+        });
+    }
+</script>   

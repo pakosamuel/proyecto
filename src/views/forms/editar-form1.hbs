@@ -1,0 +1,83 @@
+<div class="col-md-10 mx-auto">
+	<div class="card">
+		<div class="card-header">
+			<h3>Editar los campos </h3>
+		</div>
+		<div class="card-body">
+<form action="/forms/editar-form1/{{form1s._id}}?_method=PUT" method="POST">
+         <input type="hidden" name="_method" value="PUT">
+				 <div class="form-group">
+                                <input type="text" name="oficio" id="oficio" class="form-control" placeholder="Oficio"
+                                value="{{form1s.oficio}}" 
+                                >
+                </div>
+
+                            <div class="form-group">
+                                <input type="text" name="oficina" id="oficina" class="form-control" placeholder="Oficina" onkeypress="return sololetras(event)"
+                                value="{{form1s.oficina}}" 
+                                >                              
+                            </div>
+
+                            <div class="form-group">
+                                <input type="text" name="asunto" id="asunto" class="form-control" placeholder="Asunto"
+                                 value="{{form1s.asunto}}">
+                              
+                            </div>
+
+                           <div class="form-group">
+                                <input type="text" name="Referencias" id="Referencias" class="form-control" placeholder="Referencias"
+                                value="{{form1s.Referencias}}">
+                              
+                            </div>
+                           <div class="form-group">
+                                <input type="text" name="Lugar" id="Lugar" class="form-control" placeholder="Lugar"
+                                value="{{form1s.Lugar}}">
+                              
+                            </div>
+                          <div class="form-group">
+                                <label>Fecha</label>
+                                <br>
+                                <input type="date" name="fecha" id="fecha"placeholder="" class=" form-control"  
+                                value="{{form1s.fecha}}">
+                                                            </div>
+                            <div class="form-group">
+                                <input type="text" name="dirigido" id="dirigido" onkeypress="return sololetras(event)" class="form-control" placeholder="¿A quién va dirigido?"
+                                value="{{form1s.dirigido}}">
+                                                </div>
+
+                            <div class="group">
+                                <input type="text" name="firmador" id="firmador" onkeypress="return sololetras(event)" class="form-control" placeholder="¿Quién Autoriza" 
+                                value="{{form1s.firmador}}">
+                                                        </div>
+                                                        <br>
+
+				<div class="form-group">
+				   <button class="btn btn-success btn-block"  type="submit">Guardar
+				   </button>        
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+
+   function sololetras(e) {
+                key = e.keyCode || e.wich;
+                teclado = String.fromCharCode(key);
+                letras = " abcdefghijklmnopqrstuvwxyzñABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
+                especiales = "8-37-38-46-164"; //letra eñe}
+                teclado_especial = false;
+                for (var i in especiales) {
+                    if (key == especiales[i]) {
+                        teclado_especial = true;
+                        break;
+                    }
+                }
+                if(letras.indexOf(teclado)==-1 && !teclado_especial) {
+                    return false;
+                    
+                }
+            }
+
+</script>

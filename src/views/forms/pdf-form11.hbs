@@ -1,0 +1,91 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.4.1/jspdf.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.0.0-alpha.1/jspdf.plugin.autotable.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/2.3.5/jspdf.plugin.autotable.js"></script>
+<style>
+
+    table, th, td {
+        border: 1px solid black; 
+        font-size:14px;
+        letter-spacing: 2px;
+
+
+    }
+    #encabezado {
+        font-size: 14px; 
+        letter-spacing: 1px;
+
+    } 
+    #final {
+        font-size: 18px;
+        letter-spacing: 2px;
+    }
+</style>
+<body onload="pruebaDivAPdf()"></body>
+<div id="print">
+    <div id="imagen" align="center">
+        <img src="../../img/logo.png" style="width: 500px; height:100px">
+    </div> 
+    <br>
+    <div class="container"  id="contenido">
+        <div class="padding-m" align="center" id="encabezado">
+            INFORME ANUAL BIMESTRE FINANCIERO CICLO ESCOLAR 2018-2019
+            ASOCIACIONES DE PADRES DE FAMILIA
+            <div id="contenido">
+                SECTOR 01 DE PREESCOLAR <br>
+                REGION 01 <BR>
+                FECHA DE ELABORACION: <b>{{form11s11.fecha}}</b>
+            </div>
+        </div> 
+        <div id="tabla2">
+            <table>
+                <tr>
+                    <th>Nombre Escuela</th>
+                    <th>CCT</th>
+                    <th>Saldo C. Anterior</th>
+                    <th>Ingreso C. Escolar</th>
+                    <th>Saldo Actual</th>
+                    <th>Egresos C. Escolar</th>
+                    <th>Existencia Caja</th>
+                    <th>Observaciones</th>
+                </tr>
+                <tr>
+                    <td>{{form11s11.nombre}}</td>
+                    <td>{{form11s11.cct}}</td>
+                    <td>{{form11s11.saldoca}}</td>
+                    <td>{{form11s11.ingresoca}}</td>
+                    <td>{{form11s11.saldoac}}</td>
+                    <td>{{form11s11.egreso}}</td>
+                    <td>{{form11s11.caja}}</td>
+                    <td>{{form11s11.observaciones}}</td>
+                </tr>
+            </table>
+        </div>
+        <div id="encabezado">
+            <br>
+        <center>ZACATECAS, ZAC.</center>
+        <div align="center">
+            <B>  {{form11s11.nombref}}   </b>          <br>
+            JEFE DE SECTOR
+        </div>
+    </div>
+    </div>
+
+</div>
+<script>
+    function pruebaDivAPdf() {
+        var doc = new jsPDF('l', 'pt', 'letter', true);
+        html2canvas(($("#print")[0]), {
+            background: '#FFFFFF',
+            onrendered: function (canvas) {
+                var imgData = canvas.toDataURL('image/jpeg');
+
+                doc.addImage(imgData, 'JPEG', 10, 10, 750, 360);
+
+                $('#print').append(canvas);
+                doc.save('Spec_Sheet.pdf');
+            }
+        });
+    }
+</script>   
+

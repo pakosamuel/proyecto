@@ -1,0 +1,33 @@
+<div class="row">
+    {{#each form5}}
+    <div class="col-md-2 mb-2">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title d-flex justify-content-between align-items-center">
+
+                   
+                   <a href="/forms/pdf-form5/{{_id}}">
+                        <i class="fas fa-file-pdf"></i> </a>
+                    <a href="/forms/editar-form5/{{_id}}">
+                        <i class="fas fa-edit m-2"></i></a>
+                    <a href="/forms/delete5/{{_id}}">
+                        <i class="fas fa-trash"></i>
+                    </a>
+
+                </h4>
+              Escuela:{{escuela}}
+
+            </div>
+        </div>
+    </div>
+    {{else}}
+    <div class="card mx-auto">
+        <div class="card-body">
+            <h1>Hola {{ usuario.nombre}}</h1>
+            <p class="lead">No hay archivos en la base de datos.</p>
+            <a href="/formulario" class="btn btn-success btn-block">
+                Crear nuevo archivo </a>
+        </div>
+    </div>
+    {{/each}}
+</div>

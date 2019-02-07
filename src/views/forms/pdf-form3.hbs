@@ -1,0 +1,87 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.4.1/jspdf.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/2.3.5/jspdf.plugin.autotable.js"></script>
+<style>
+
+    table, th, td {
+        border: 1px solid black; 
+        font-size:14px;
+        letter-spacing: 2px;
+
+
+    }
+    #encabezado {
+        font-size: 14px; 
+        letter-spacing: 1px;
+
+    } 
+    #final {
+        font-size: 18px;
+        letter-spacing: 2px;
+    }
+</style>
+
+<body onload="pruebaDivAPdf()"></body>
+<div id="print">
+    <div>
+        <div id="imagen" align="center">
+            <img src="../../img/logo.png" style="width: 500px; height:100px">
+        </div> 
+        <br>
+        <div align="center" id="encabezado">
+            CONCENTRADO<br>  DE INFORME  FINANCIERO  ANUAL<br> DE ASOCIACIONES. DE PADRES DE FAMILIA POR ZONA ESCOLAR<br>
+            DEPARTAMENTO DE SERVICIOS EDUCATIVOS REGION:1<br>
+            Ciclo escolar 2017-2018
+        </div>
+
+        <div>
+            <table align="center">
+                <tr>
+                    <th>Zona</th>
+                    <th>Nombre Escuela</th>
+                    <th>CCT</th>
+                    <th>Saldo C. Anterior</th>
+                    <th>Ingreso C. Escolar</th>
+                    <th>Saldo Actual</th>
+                    <th>Egresos</th>
+                    <th>Existencia Caja</th>
+                    <th>Observaciones</th>
+                </tr>
+                <tr>
+                    <td>{{form3s3.zona}}</td>
+                    <td>{{form3s3.nombre}}</td>
+                    <td>{{form3s3.cct}}</td>
+                    <td align="center">${{form3s3.saldoca}}.00</td>
+                    <td align="center">${{form3s3.ingresoca}}.00</td>
+                    <td align="center">${{form3s3.saldoac}}.00</td>
+                    <td align="center">${{form3s3.egresos}}.00</td>
+                    <td align="center">${{form3s3.existencia}}.00</td>
+                    <td>{{form3s3.observaciones}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div><center>villa de cos a 9 de julio</center></div>
+    <div id="final">
+        _____________________<br>
+        {{form3s3.nombrefirma}}<br>
+        Supervisor Zona:{{form3s3.zona}}<br>
+        Preescolar
+    </div>
+</div>
+<script>
+    function pruebaDivAPdf() {
+        var doc = new jsPDF('l', 'pt', 'letter', true);
+        html2canvas(($("#print")[0]), {
+            background: '#FFFFFF',
+            onrendered: function (canvas) {
+                var imgData = canvas.toDataURL('image/jpeg');
+
+                doc.addImage(imgData, 'JPEG', 10, 10, 750, 360);
+
+                $('#print').append(canvas);
+                doc.save('Spec_Sheet.pdf');
+            }
+        });
+    }
+</script>   
